@@ -1,6 +1,13 @@
 {
   "team_management": {
+    "host": "localhost",
+    "port": 5432,
+    "url": "postgres://loopback_user:root@localhost:5432/team_management",
+    "database": "team_management",
+    "password": "root",
     "name": "team_management",
-    "connector": "memory"
+    "user": "loopback_user",
+    "useNewUrlParser": false,
+    "connector": "postgresql"
   }
 }

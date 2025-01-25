@@ -1,7 +1,6 @@
 "use strict";
 
 module.exports = function (Anggota) {
-  // Remote method untuk mendapatkan anggota berdasarkan tim
   Anggota.remoteMethod("getByTim", {
     http: { path: "/getByTim/:timId", verb: "get" },
     accepts: { arg: "timId", type: "string", required: true },
@@ -24,14 +23,10 @@ module.exports = function (Anggota) {
     return anggota;
   };
 
-  // Hook sebelum data disimpan
   Anggota.observe("before save", async function checkTimId(ctx, next) {
     const Tim = Anggota.app.models.Tim;
-
-    // Ambil tim_id dari data yang akan disimpan
     const timId = ctx.instance ? ctx.instance.tim_id : ctx.data.tim_id;
 
-    // Validasi tim_id, cek apakah tim dengan tim_id tersebut ada
     if (timId) {
       const timExists = await Tim.count({ id: timId });
       if (!timExists) {
@@ -43,7 +38,6 @@ module.exports = function (Anggota) {
     next();
   });
 
-  // Remote method untuk menambahkan anggota baru
   Anggota.remoteMethod("createAnggota", {
     http: { path: "/create", verb: "post" },
     accepts: { arg: "anggotaData", type: "object", http: { source: "body" } },
@@ -61,7 +55,6 @@ module.exports = function (Anggota) {
     return await Anggota.create(anggotaData);
   };
 
-  // Remote method untuk memperbarui anggota
   Anggota.remoteMethod("updateAnggota", {
     http: { path: "/update/:id", verb: "put" },
     accepts: [
@@ -90,7 +83,6 @@ module.exports = function (Anggota) {
     return await anggota.save();
   };
 
-  // Remote method untuk menghapus anggota
   Anggota.remoteMethod("deleteAnggota", {
     http: { path: "/delete/:id", verb: "delete" },
     accepts: { arg: "id", type: "string", required: true },
@@ -111,7 +103,6 @@ module.exports = function (Anggota) {
     return { message: "Anggota berhasil dihapus" };
   };
 
-  // Helper function untuk validasi UUID
   const isValidUUID = (uuid) => {
     const uuidRegex =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

@@ -1,7 +1,6 @@
 "use strict";
 
 module.exports = function (Tim) {
-  // Remote method untuk mendapatkan semua tim
   Tim.remoteMethod("getAll", {
     http: { path: "/getAll", verb: "get" },
     returns: { arg: "data", type: "array" },
@@ -11,7 +10,6 @@ module.exports = function (Tim) {
     Tim.find({}, { fields: { id: true, nama: true, deskripsi: true } }, cb);
   };
 
-  // Remote method untuk menambahkan tim baru
   Tim.remoteMethod("createTim", {
     http: { path: "/create", verb: "post" },
     accepts: { arg: "timData", type: "object", http: { source: "body" } },
@@ -19,7 +17,6 @@ module.exports = function (Tim) {
   });
 
   Tim.createTim = function (timData, cb) {
-    // Validasi data tim
     if (!timData.nama) {
       return cb({ error: "Nama tim tidak boleh kosong" });
     }
@@ -31,7 +28,6 @@ module.exports = function (Tim) {
     });
   };
 
-  // Remote method untuk mengupdate tim yang ada
   Tim.remoteMethod("updateTim", {
     http: { path: "/update/:id", verb: "put" },
     accepts: [
@@ -49,7 +45,6 @@ module.exports = function (Tim) {
       if (!tim) {
         return cb({ error: "Tim tidak ditemukan" });
       }
-      // Validasi data sebelum update
       if (!timData.nama) {
         return cb({ error: "Nama tim tidak boleh kosong" });
       }
@@ -63,7 +58,6 @@ module.exports = function (Tim) {
     });
   };
 
-  // Remote method untuk menghapus tim
   Tim.remoteMethod("deleteTim", {
     http: { path: "/delete/:id", verb: "delete" },
     accepts: { arg: "id", type: "string", required: true },

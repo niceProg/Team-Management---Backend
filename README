@@ -131,11 +131,3 @@ Relasi Model
 
 - Tim memiliki relasi hasMany dengan model Anggota.
 - Anggota memiliki relasi belongsTo dengan model Tim.
-
-```
-
-```
-
-```
-
-```

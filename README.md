@@ -82,20 +82,21 @@ Pastikan Anda memiliki persyaratan berikut sebelum menjalankan aplikasi:
    - Pastikan database telah dikonfigurasi dengan benar.
    - Jalankan aplikasi untuk memastikan model diterapkan ke database:
 
-   ```bash
-   node server/server.js
+     ```bash
+     node server/server.js
 
-   ```
+     ```
 
 5. **Jalankan Server**
 
    - Mulai server dengan perintah:
 
-   ```bash
-   npm start
+     ```bash
+     npm start
+
+     ```
 
    - Secara default, server akan berjalan di http://localhost:3000.
-   ```
 
 6. **Akses Dokumentasi API**
 

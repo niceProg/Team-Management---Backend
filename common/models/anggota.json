@@ -1,0 +1,33 @@
+{
+  "name": "Anggota",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": true,
+      "defaultFn": "guid",
+      "required": true
+    },
+    "nama": {
+      "type": "string",
+      "required": true
+    },
+    "peran": {
+      "type": "string"
+    },
+    "tim_id": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "tim": {
+      "type": "belongsTo",
+      "model": "Tim",
+      "foreignKey": "tim_id"
+    }
+  },
+  "methods": {}
+}
